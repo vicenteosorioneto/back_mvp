@@ -1,0 +1,194 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║            🔧 CORREÇÃO - Erro 400 no Cadastro MVP Agro                   ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌─ 📋 DIAGNÓSTICO ─────────────────────────────────────────────────────────┐
+│                                                                           │
+│  ❌ PROBLEMA:                                                            │
+│     Frontend chama: POST /api/auth/register                              │
+│     Backend retorna: 400 Bad Request (sem mensagem clara)                │
+│                                                                           │
+│  ✅ SOLUÇÃO:                                                             │
+│     Backend agora valida cada campo e retorna mensagem específica        │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ 🚀 COMEÇAR RÁPIDO ──────────────────────────────────────────────────────┐
+│                                                                           │
+│  1. Testar o backend:                                                    │
+│     $ cd backend                                                         │
+│     $ node test-auth.js                                                  │
+│                                                                           │
+│  2. Copiar cliente para frontend:                                        │
+│     $ cp FRONTEND_API_CLIENT.js seu-projeto/api.js                      │
+│                                                                           │
+│  3. Usar no seu código:                                                  │
+│     import { registerUser } from './api.js';                             │
+│     const user = await registerUser({                                    │
+│       name: 'João',                                                      │
+│       email: 'joao@example.com',                                         │
+│       password: 'Senha123!'                                              │
+│     });                                                                  │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ 📝 PAYLOAD ESPERADO ─────────────────────────────────────────────────────┐
+│                                                                           │
+│  POST /api/auth/register                                                │
+│                                                                           │
+│  {                                                                       │
+│    "name": "João Silva",           ← OBRIGATÓRIO (seu nome completo)    │
+│    "email": "joao@email.com",      ← OBRIGATÓRIO (email válido)         │
+│    "password": "Senha123!",        ← OBRIGATÓRIO (min 6 caracteres)    │
+│    "role": "produtor"              ← OPCIONAL (admin/produtor/tecnico)  │
+│  }                                                                       │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ ❌ ERROS COMUNS ────────────────────────────────────────────────────────┐
+│                                                                           │
+│  ❌ Enviando: { "nome": "...", "senha": "..." }                          │
+│  ✅ Correto:  { "name": "...", "password": "..." }                       │
+│                                                                           │
+│  ❌ Enviando: { "email": "usuario" }                                     │
+│  ✅ Correto:  { "email": "usuario@example.com" }                         │
+│                                                                           │
+│  ❌ Enviando: { "password": "123" }                                      │
+│  ✅ Correto:  { "password": "Senha123!" } (min 6 caracteres)             │
+│                                                                           │
+│  ❌ Enviando: { "role": "gerente" }                                      │
+│  ✅ Correto:  { "role": "admin" / "produtor" / "tecnico" }              │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ 🧪 TESTAR COM cURL ────────────────────────────────────────────────────┐
+│                                                                           │
+│  # Teste bem-sucedido (retorna 201):                                    │
+│  curl -X POST http://localhost:5000/api/auth/register \                 │
+│    -H "Content-Type: application/json" \                                │
+│    -d '{                                                                │
+│      "name":"João","email":"joao@example.com","password":"Senha123!"  │
+│    }'                                                                   │
+│                                                                           │
+│  # Teste com erro (retorna 400 com mensagem clara):                    │
+│  curl -X POST http://localhost:5000/api/auth/register \                 │
+│    -H "Content-Type: application/json" \                                │
+│    -d '{"email":"joao@example.com","password":"Senha123!"}'            │
+│                                                                           │
+│  Resposta:                                                              │
+│  {"success":false,"message":"Campo \"name\" (nome) é obrigatório"}     │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ 📁 ARQUIVOS CRIADOS ────────────────────────────────────────────────────┐
+│                                                                           │
+│  📖 LEIA PRIMEIRO:                                                      │
+│     • README_SOLUCAO.md ..................... Resumo em português       │
+│     • ERRO_400_DIAGNOSTICO.md .............. Diagnóstico rápido        │
+│                                                                           │
+│  🚀 PARA INTEGRAR:                                                      │
+│     • FRONTEND_API_CLIENT.js ............... Código pronto (copiar)    │
+│     • AUTH_INTEGRATION_GUIDE.md ............ Guia completo             │
+│                                                                           │
+│  ✅ PARA VALIDAR:                                                       │
+│     • test-auth.js ......................... Testes automatizados       │
+│     • CHECKLIST_FINAL.md ................... Lista de verificação      │
+│                                                                           │
+│  📊 ESTE ARQUIVO:                                                       │
+│     • SUMARIO_VISUAL.txt ................... Você está aqui!            │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ 📊 COMPARAÇÃO ──────────────────────────────────────────────────────────┐
+│                                                                           │
+│                       ANTES              │           DEPOIS              │
+│  ─────────────────────────────────────────┼───────────────────────────   │
+│  Erro genérico        │ 400 Bad Request   │ 400 + mensagem específica    │
+│  Qual campo?          │ ❌ Desconhecido   │ ✅ Claro ("name" faltando)   │
+│  Código de exemplo    │ ❌ Nenhum        │ ✅ Completo (HTML/JS)        │
+│  Documentação         │ ❌ Mínima        │ ✅ Extensa (5 arquivos)      │
+│  Testes              │ ❌ Nenhum        │ ✅ 7 testes automatizados    │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ 💡 DICAS ──────────────────────────────────────────────────────────────┐
+│                                                                           │
+│  1. Nomes dos campos são CASE-SENSITIVE:                                │
+│     "name" ≠ "Name" ≠ "NAME"  →  Use sempre minúsculo: "name"         │
+│                                                                           │
+│  2. Email DEVE ter @domain.com:                                         │
+│     ❌ "usuario"  ❌ "usuario@"  ✅ "usuario@example.com"               │
+│                                                                           │
+│  3. Senha mínimo 6 caracteres:                                          │
+│     ❌ "123"  ❌ "abcde"  ✅ "abcdef" ou "Senha123!"                    │
+│                                                                           │
+│  4. Role só aceita estes valores:                                       │
+│     ✅ "admin"      ✅ "produtor"      ✅ "tecnico"                      │
+│     ❌ "gerente"    ❌ "administrador" ❌ "técnico"                      │
+│                                                                           │
+│  5. Frontend deve exibir error.message:                                 │
+│     ❌ alert('Erro ao cadastrar')                                       │
+│     ✅ alert(`Erro: ${error.message}`)  ← Mostra mensagem específica    │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ ✅ CHECKLIST FINAL ─────────────────────────────────────────────────────┐
+│                                                                           │
+│  Antes de considerar resolvido, verifique:                              │
+│                                                                           │
+│  [ ] Backend está rodando (npm install && node src/server.js)           │
+│  [ ] Teste passou (node backend/test-auth.js → 7 testes OK)           │
+│  [ ] Payload tem: name, email, password (nomes corretos)               │
+│  [ ] Email segue formato: user@domain.com                               │
+│  [ ] Senha tem pelo menos 6 caracteres                                  │
+│  [ ] Frontend exibe error.message (não genérico)                        │
+│  [ ] Token é salvo após login bem-sucedido                              │
+│  [ ] Token é enviado em requisições autenticadas                        │
+│  [ ] CORS permite localhost (3000, 5173, 5500)                          │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+┌─ 🎯 EXEMPLO COMPLETO ────────────────────────────────────────────────────┐
+│                                                                           │
+│  FRONTEND - index.html:                                                 │
+│  ───────────────────────────────────────────────────────────────────    │
+│  <form onsubmit="handleRegister(event)">                                │
+│    <input id="name" placeholder="Nome" required>                        │
+│    <input id="email" placeholder="Email" required>                      │
+│    <input id="password" type="password" placeholder="Senha" required>   │
+│    <button type="submit">Cadastrar</button>                             │
+│  </form>                                                                │
+│                                                                           │
+│  FRONTEND - app.js:                                                     │
+│  ───────────────────────────────────────────────────────────────────    │
+│  import { registerUser } from './api.js';                               │
+│                                                                           │
+│  window.handleRegister = async (e) => {                                 │
+│    e.preventDefault();                                                  │
+│    try {                                                                │
+│      const user = await registerUser({                                  │
+│        name: document.getElementById('name').value,                     │
+│        email: document.getElementById('email').value,                   │
+│        password: document.getElementById('password').value,             │
+│      });                                                                │
+│      alert(`✅ Bem-vindo, ${user.name}!`);                              │
+│      window.location.href = '/dashboard.html';                          │
+│    } catch (error) {                                                    │
+│      alert(`❌ ${error.message}`);  ← Mensagem específica do backend    │
+│    }                                                                    │
+│  };                                                                     │
+│                                                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                        ✅ PRONTO PARA USAR!                              ║
+║                                                                            ║
+║  Próximo passo: Leia README_SOLUCAO.md ou execute test-auth.js            ║
+║                                                                            ║
+║  Dúvidas? Procure em AUTH_INTEGRATION_GUIDE.md (todas as casos)           ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
