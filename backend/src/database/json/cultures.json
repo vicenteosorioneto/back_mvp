@@ -1,0 +1,42 @@
+[
+  {
+    "id": "2f980df2-adb1-4ccf-92ea-b503930349f8",
+    "name": "Milho",
+    "plantingDate": "2025-12-20",
+    "harvestDate": "2026-11-20",
+    "expectedRevenue": 1000000,
+    "notes": "",
+    "createdAt": "2026-04-27T19:05:57.759Z",
+    "updatedAt": "2026-04-27T19:05:57.759Z"
+  },
+  {
+    "id": "7dc58bd0-b27e-4575-ad2a-020f094aa43e",
+    "name": "Milho",
+    "plantingDate": "2025-11-20",
+    "harvestDate": "2026-11-20",
+    "expectedRevenue": 9999.99,
+    "notes": "wewe",
+    "createdAt": "2026-04-27T19:06:15.594Z",
+    "updatedAt": "2026-04-27T19:06:15.594Z"
+  },
+  {
+    "id": "25502f9f-63b1-4e08-b4a1-001c946b976b",
+    "name": "Milho",
+    "plantingDate": "2026-01-20",
+    "harvestDate": "2026-09-20",
+    "expectedRevenue": 1000,
+    "notes": "",
+    "createdAt": "2026-04-27T19:52:07.781Z",
+    "updatedAt": "2026-04-27T19:52:07.781Z"
+  },
+  {
+    "id": "4980564e-c8a3-4300-8516-85a690a8d1e6",
+    "name": "Milho2",
+    "plantingDate": "2026-01-20",
+    "harvestDate": "2026-10-20",
+    "expectedRevenue": 10000,
+    "notes": "",
+    "createdAt": "2026-04-27T19:56:24.476Z",
+    "updatedAt": "2026-04-27T19:56:24.476Z"
+  }
+]
