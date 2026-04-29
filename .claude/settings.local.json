@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//mnt/c/Users/osori/Documents/back_mvp/**)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:5000/api/auth/me)",
+      "Bash(curl -s http://localhost:5000/api/activities)",
+      "Bash(python3 -m json.tool)"
+    ]
+  }
+}
