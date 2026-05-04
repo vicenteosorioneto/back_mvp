@@ -5,7 +5,12 @@
       "Bash(npm run *)",
       "Bash(curl -s http://localhost:5000/api/auth/me)",
       "Bash(curl -s http://localhost:5000/api/activities)",
-      "Bash(python3 -m json.tool)"
+      "Bash(python3 -m json.tool)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\osori\\\\Documents\\\\back_mvp\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\osori\\\\Documents\\\\back_mvp\" -Exclude node_modules -Recurse | Where-Object { $_.PSIsContainer } | Select-Object -ExpandProperty FullName | Sort-Object)",
+      "Bash(node -e \"require\\('./src/app'\\)\")"
     ]
   }
 }
