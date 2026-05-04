@@ -10,7 +10,12 @@
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(Sort-Object)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\osori\\\\Documents\\\\back_mvp\" -Exclude node_modules -Recurse | Where-Object { $_.PSIsContainer } | Select-Object -ExpandProperty FullName | Sort-Object)",
-      "Bash(node -e \"require\\('./src/app'\\)\")"
+      "Bash(node -e \"require\\('./src/app'\\)\")",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\osori\" -Depth 2 -Directory | Where-Object { $_.Name -match \"front|mvp|agro|app|web|react|vue\" } | Select-Object FullName | Sort-Object FullName)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\osori\" -Depth 3 -Directory | Where-Object { $_.Name -match \"front|mvp-front|agro\" } | Select-Object FullName)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\osori\\\\Documents\\\\MVP_agro\" -Recurse -Directory)",
+      "Bash(Select-Object -First 20)",
+      "Bash(Format-List FullName)"
     ]
   }
 }
